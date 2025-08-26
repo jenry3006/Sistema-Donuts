@@ -2,6 +2,7 @@ package com.donutec.controller;
 
 import com.donutec.model.Cliente;
 import com.donutec.service.ClienteService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,8 +16,8 @@ public class ClienteController {
     ClienteService clienteService;
 
     @PostMapping("salvar")
-    private String salvar(Cliente cliente){
+    private String salvar(@Valid Cliente cliente){
         clienteService.salvar(cliente);
-        return "redirect:/cliente/cadastro";
+        return "cliente/cadastro";
     }
 }
