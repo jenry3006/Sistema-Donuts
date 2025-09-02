@@ -21,7 +21,7 @@ public class ClienteController {
     @Autowired
     ClienteService clienteService;
 
-    @GetMapping("/gerenciar")
+    @GetMapping
     public String gerenciar(Cliente cliente, Model model){
         model.addAttribute("clientes",clienteService.listar());
         return "cliente/clientes";
@@ -29,9 +29,10 @@ public class ClienteController {
 
 
     @PostMapping("salvar")
-    private String salvar(@Valid Cliente cliente){
+    private String salvar(@Valid Cliente cliente, Model model){
+        model.addAttribute("cliente",cliente);
         clienteService.salvar(cliente);
-        return "cliente/cadastro";
+        return "redirect:/clientes";
     }
 
     @GetMapping("/deletar")
