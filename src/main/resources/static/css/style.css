@@ -1,0 +1,21 @@
+/* Estilos globais */
+body {
+    background-color: #f8f9fa;
+}
+.navbar-brand i {
+    color: #ffc107; /* Cor do Donuts */
+}
+
+/* Estilos para a tabela */
+.table th, .table td {
+    white-space: nowrap;
+}
+
+/* Estilos de cor para o dashboard, se desejar */
+.card-header-icon {
+    font-size: 2rem;
+    color: #fff;
+    opacity: 0.7;
+}
+
+/* Outros estilos, como hover effects e espaçamento */
