@@ -8,9 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
@@ -26,14 +23,21 @@ public class ClienteController {
 
 
     @PostMapping("salvar")
-    private String salvar(@Valid Cliente cliente, Model model){
+    public String salvar(@Valid Cliente cliente, Model model){
         clienteService.salvar(cliente);
         return "redirect:/clientes";
     }
 
     @GetMapping("deletar")
-    private String deletar(@RequestParam("id")Long id){
+    public String deletar(@RequestParam("id")Long id){
         clienteService.deletar(id);
         return "redirect:/clientes";
     }
+
+    @GetMapping("/editar")
+    public String editar(@RequestParam("id")Long id, Model model){
+        clienteService.editarPorId(id).ifPresent(c -> model.addAttribute("cliente", c));
+        return "cliente/clientes";
+    }
+
 }

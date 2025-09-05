@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteService {
@@ -25,5 +26,10 @@ public class ClienteService {
     public void deletar(Long id){
         clienteRepository.deleteById(id);
     }
+
+    public Optional editarPorId(Long id){
+         return clienteRepository.findById(id);
+    }
+
 
 }
