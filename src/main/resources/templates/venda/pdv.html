@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Autocomplete com AJAX</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        .autocomplete-container { position: relative; width: 300px; }
+        #nomeCliente { width: 100%; padding: 10px; font-size: 16px; }
+        #sugestoes {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border: 1px solid #ddd;
+            border-top: none;
+            position: absolute;
+            width: 100%;
+            background-color: white;
+            z-index: 1000;
+        }
+        #sugestoes li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+        #sugestoes li:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+<h1>Busca de Clientes</h1>
+
+<div class="autocomplete-container">
+    <input type="text" id="nomeCliente" placeholder="Digite o nome do cliente...">
+    <ul id="sugestoes"></ul>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#nomeCliente').on('keyup', function() {
+            let nomeDigitado = $(this).val();
+
+            if (nomeDigitado.length > 1) { // Só busca se tiver 2 ou mais caracteres
+                $.ajax({
+                    url: '/api/clientes',
+                    type: 'GET',
+                    data: { nome: nomeDigitado },
+                    success: function(data) {
+                        $('#sugestoes').empty();
+                        if (data.length > 0) {
+                            $.each(data, function(index, cliente) {
+                                $('#sugestoes').append('<li>' + cliente.nome + '</li>');
+                            });
+                        }
+                    }
+                });
+            } else {
+                $('#sugestoes').empty();
+            }
+        });
+
+        // Adiciona funcionalidade para preencher o campo ao clicar na sugestão
+        $('#sugestoes').on('click', 'li', function() {
+            $('#nomeCliente').val($(this).text());
+            $('#sugestoes').empty();
+        });
+    });
+</script>
+</body>
+</html>
