@@ -34,9 +34,10 @@ public class ClienteService {
     }
 
     public List<ClienteDTO> buscarPorNome(String nome){
-        List<Cliente> clientes = clienteRepository.findAll();
+        /*List<Cliente> clientes = clienteRepository.findAll();
         return clientes.stream().filter(x -> x.getNome().toLowerCase().contains(nome.toLowerCase()))
-                .collect(Collectors.toList()).stream().map(z -> new ClienteDTO(z)).toList();
+                .collect(Collectors.toList()).stream().map(z -> new ClienteDTO(z)).toList();*/
+        return clienteRepository.findByNomeContainingIgnoreCase(nome);
     }
 
 }
