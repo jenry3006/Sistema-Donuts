@@ -21,7 +21,6 @@ public class ClienteController {
         return "cliente/clientes";
     }
 
-
     @PostMapping("salvar")
     public String salvar(@Valid Cliente cliente, Model model){
         clienteService.salvar(cliente);
@@ -38,6 +37,11 @@ public class ClienteController {
     public String editar(@RequestParam("id")Long id, Model model){
         clienteService.editarPorId(id).ifPresent(c -> model.addAttribute("cliente", c));
         return "cliente/clientes";
+    }
+
+    @GetMapping("/teste")
+    public String teste(Cliente cliente, Model model){
+        return "venda/pdv";
     }
 
 }

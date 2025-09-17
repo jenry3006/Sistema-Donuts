@@ -12,6 +12,14 @@ public class ClienteDTO {
         this.nome = nome;
     }
 
+    @Override
+    public String toString() {
+        return "ClienteDTO{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
+    }
+
     public ClienteDTO(Cliente cliente){
         id = cliente.getId();
         nome = cliente.getNome();
