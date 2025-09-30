@@ -22,9 +22,9 @@ public class ClienteController {
     }
 
     @PostMapping("salvar")
-    public String salvar(@Valid Cliente cliente, Model model){
+    public String salvar(@Valid Cliente cliente, Model model,@RequestParam(value = "redirectURL", required = false, defaultValue = "/clientes") String redirectURL){
         clienteService.salvar(cliente);
-        return "redirect:/clientes";
+        return "redirect:" + redirectURL;
     }
 
     @GetMapping("deletar")
