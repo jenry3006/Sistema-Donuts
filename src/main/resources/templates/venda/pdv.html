@@ -27,7 +27,7 @@
                         <div class="col-md-6 autocomplete-container">
                             <label for="nomeCliente" class="form-label">Cliente</label>
                             <input type="text" class="form-control" id="nomeCliente" placeholder="Nome do Cliente">
-                            <ul id="sugestoes"></ul>
+                            <ul id="sugestoesCliente">
                         </div>
 
                         <div class="col-md-2 d-flex align-items-end">
@@ -46,9 +46,10 @@
                     <hr class="my-4">
 
                     <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="produto-input" class="form-label">Produto</label>
-                            <input type="text" class="form-control" id="produto-input" placeholder="Digite o nome do produto">
+                        <div class="col-md-6 autocomplete-container">
+                            <label for="nomeProduto" class="form-label">Produto</label>
+                            <input type="text" class="form-control" id="nomeProduto" placeholder="Digite o nome do produto">
+                            <ul id="sugestoesProduto"></ul>
                         </div>
                         <div class="col-md-2">
                             <label for="quantidade-input" class="form-label">Qtd.</label>
@@ -118,7 +119,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel">Adicionar/Editar Cliente</h5>
-                <a th:href="@{/clientes}" class="btn-close" ></a>
+                <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></a>
             </div>
             <div class="modal-body">
                 <form th:object="${cliente}"  th:action="@{/clientes/salvar}"
@@ -155,7 +156,7 @@
                                id="observacao"></input>
                     </div>
                     <div class="modal-footer">
-                        <a type="button" th:href="@{/clientes}" class="btn btn-secondary" >Cancelar</a>
+                        <a type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Cancelar</a>
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                 </form>
@@ -170,34 +171,55 @@
 
 <script>
     $(document).ready(function() {
-        $('#nomeCliente').on('keyup', function() {
-            let nomeDigitado = $(this).val();
+       function configurarAutocomplete(inputId, sugestoesId, apiUrl) {
+           $('#' + inputId).on('keyup', function() {
+               let termoDigitado = $(this).val();
+               const sugestoesLista = $('#' + sugestoesId);
+               sugestoesLista.empty();
 
-            if (nomeDigitado.length > 1) { // Só busca se tiver 2 ou mais caracteres
-                $.ajax({
-                    url: '/api/clientes',
-                    type: 'GET',
-                    data: { nome: nomeDigitado },
-                    success: function(data) {
-                        $('#sugestoes').empty();
-                        if (data.length > 0) {
-                            $.each(data, function(index, cliente) {
-                                $('#sugestoes').append('<li>' + cliente.nome + '</li>');
-                            });
-                        }
-                    }
-                });
-            } else {
-                $('#sugestoes').empty();
-            }
-        });
+               if (termoDigitado.length > 1) {
+                   $.ajax({
+                       url: apiUrl, // Usando a URL passada como parâmetro
+                       type: 'GET',
+                       data: { nome: termoDigitado },
+                       success: function(data) {
+                           if (data.length > 0) {
+                               $.each(data, function(index, item) {
+                                   // 'item.nome' é o nome do cliente ou do produto
+                                   const itemLista = $('<li data-id="' + item.id + '">' + item.nome + '</li>');
+                                   sugestoesLista.append(itemLista);
+                               });
+                           }
+                       }
+                   });
+               }
+           });
 
-        // Adiciona funcionalidade para preencher o campo ao clicar na sugestão
-        $('#sugestoes').on('click', 'li', function() {
-            $('#nomeCliente').val($(this).text());
-            $('#sugestoes').empty();
-        });
-    });
+           // Lógica para selecionar o item
+           $('#' + sugestoesId).on('click', 'li', function() {
+               const itemSelecionado = $(this);
+               const idSelecionado = itemSelecionado.data('id');
+               const nomeSelecionado = itemSelecionado.text();
+
+               $('#' + inputId).val(nomeSelecionado);
+               $('#' + sugestoesId).empty();
+
+               console.log('Item selecionado: ID = ' + idSelecionado + ', Nome = ' + nomeSelecionado);
+           });
+       }
+
+       configurarAutocomplete(
+           'nomeCliente',
+           'sugestoesCliente',
+           '/api/clientes'
+       );
+
+       configurarAutocomplete(
+           'nomeProduto',
+           'sugestoesProduto',
+           '/api/produtos'
+       );
+   });
 </script>
 </body>
 </html>
