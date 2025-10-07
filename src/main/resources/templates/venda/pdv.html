@@ -62,16 +62,20 @@
                         </div>
                     </div>
 
-                    <div class="collapse mt-3" id="adicionais-container">
+                    <p>
+                    </p>
+
+                    <div class="" id="adicionais-container">
                         <div class="p-3 border rounded">
                             <h5 class="fw-bold">Adicionais para o Produto</h5>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="adicional-1" name="adicionais" value="Glacê de Chocolate" data-valor="2.50">
-                                <label class="form-check-label" for="adicional-1">Glacê de Chocolate (+ R$ 2,50)</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="adicional-2" name="adicionais" value="Granulado Colorido" data-valor="1.00">
-                                <label class="form-check-label" for="adicional-2">Granulado Colorido (+ R$ 1,00)</label>
+                            <div class="form-check" th:each="a, status : ${adicionaisLista}">
+                                <input class="form-check-input" th:value="${a.id}"
+                                       th:field="*{adicionais}" name="adicionais" type="checkbox"  th:id="${'adicional-' + status.index}">
+                                <label class="form-check-label" th:for="${'adicional-' + status.index}">
+                                    <span th:text="${a.nome}"></span>
+                                    <span th:text="| (+ R$ ${#numbers.formatDecimal(a.valor, 1, 'POINT', 2, 'COMMA')})|"></span>
+
+                                </label>
                             </div>
                             <div class="d-grid mt-3">
                                 <button class="btn btn-secondary" id="confirmar-adicionais-btn">Confirmar Adicionais</button>
