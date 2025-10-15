@@ -49,7 +49,7 @@
                     <hr class="my-4">
 
                     <div class="row g-3">
-                        <div class="col-md-6 autocomplete-container">
+                        <div class="col-md-5 autocomplete-container">
                                 <label for="nomeProduto" class="form-label">Produto:</label>
                                 <input id="nomeProduto" class="form-control" placeholder="Digite o nome do produto...">
                                 <input type="hidden" id="idProdutoSelecionado" name="idProduto">
@@ -58,7 +58,13 @@
                             <label for="quantidade-input" class="form-label">Qtd.</label>
                             <input type="number" class="form-control" id="quantidade-input" value="1" min="1">
                         </div>
-                        <div class="col-md-4 d-flex align-items-end">
+                        <div class="col-md-2 autocomplete-container">
+                            <label for="adicionais-btn" class="form-label">Adicionais?</label>
+                            <a class="btn btn-success w-100" data-bs-toggle="collapse" href="#collapseAdicionais" id="adicionais-btn">
+                                <i class="bi bi-plus-circle me-2"></i>
+                            </a>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end">
                             <button class="btn btn-success w-100" id="adicionar-produto-btn">
                                 <i class="bi bi-plus-circle me-2"></i>Adicionar Produto
                             </button>
@@ -68,7 +74,7 @@
                     <p>
                     </p>
 
-                    <div class="" id="adicionais-container">
+                    <div class="collapse" id="collapseAdicionais">
                         <div class="p-3 border rounded">
                             <h5 class="fw-bold">Adicionais para o Produto</h5>
                             <div class="form-check" th:each="a, status : ${adicionaisLista}">
@@ -80,9 +86,7 @@
 
                                 </label>
                             </div>
-                            <div class="d-grid mt-3">
-                                <button class="btn btn-secondary" id="confirmar-adicionais-btn">Confirmar Adicionais</button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
