@@ -1,5 +1,8 @@
 package com.donutec.service;
 
+import com.donutec.dto.ClienteDTO;
+import com.donutec.dto.ProdutoDTO;
+import com.donutec.model.Adicional;
 import com.donutec.model.Produto;
 import com.donutec.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,22 +15,30 @@ import java.util.Optional;
 public class ProdutoService {
 
     @Autowired
-    ProdutoRepository repository;
+    ProdutoRepository produtoRepository;
 
-    public List<Produto> listar (){
-        return repository.findAll();
+    public List<ProdutoDTO> listar (){
+        List<Produto> result = produtoRepository.findAll();
+        return result.stream().map(x -> new ProdutoDTO(x)).toList();
     }
 
-    public Produto salvar(Produto produto){
-        return repository.save(produto);
+    public ProdutoDTO salvar(ProdutoDTO produtoDTO){
+        Produto produto = new Produto(produtoDTO);
+        Produto save = produtoRepository.save(produto);
+        return new ProdutoDTO(save);
     }
 
     public void deletar(Produto produto){
-        repository.delete(produto);
+        produtoRepository.delete(produto);
     }
 
-    public Optional editarPorId(Long id){
-        return repository.findById(id);
+    public Optional<ProdutoDTO> buscarPorId(Long id){
+        Optional<Produto> produtoOptional = produtoRepository.findById(id);
+        return produtoOptional.map(ProdutoDTO::new);
 
+    }
+
+    public List<ProdutoDTO> buscarPorNome(String nome){
+        return produtoRepository.findByNomeContainingIgnoreCase(nome);
     }
 }

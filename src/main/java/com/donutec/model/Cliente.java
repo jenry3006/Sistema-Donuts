@@ -1,5 +1,6 @@
 package com.donutec.model;
 
+import com.donutec.dto.ClienteDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +23,16 @@ public class Cliente {
     private LocalDate dataNascimento;
     private String observacao;
 
+    public Cliente(){}
+
+    public Cliente(ClienteDTO clienteDTO){
+        this.id = clienteDTO.getId();
+        this.nome = clienteDTO.getNome();
+        this.endereco = clienteDTO.getEndereco();
+        this.telefone = clienteDTO.getTelefone();
+        this.dataNascimento = clienteDTO.getDataNascimento();
+        this.observacao = clienteDTO.getObservacao();
+    }
 
     public Long getId() {
         return id;

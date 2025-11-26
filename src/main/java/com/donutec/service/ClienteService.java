@@ -1,5 +1,6 @@
 package com.donutec.service;
 
+import com.donutec.dto.AdicionalDTO;
 import com.donutec.dto.ClienteDTO;
 import com.donutec.model.Cliente;
 import com.donutec.repository.ClienteRepository;
@@ -17,26 +18,31 @@ public class ClienteService {
     @Autowired
     ClienteRepository clienteRepository;
 
-    public Cliente salvar(Cliente cliente){
-        return clienteRepository.save(cliente);
+    public ClienteDTO salvar(ClienteDTO clienteDTO){
+        Cliente cliente = new Cliente(clienteDTO);
+        Cliente save = clienteRepository.save(cliente);
+        return new ClienteDTO(save);
     }
 
-    public List<Cliente> listar(){
-        return clienteRepository.findAll();
+    public List<ClienteDTO> listar(){
+        List<Cliente> result = clienteRepository.findAll();
+        return result.stream().map(x -> new ClienteDTO(x)).toList();
     }
 
     public void deletar(Long id){
         clienteRepository.deleteById(id);
     }
 
-    public Optional editarPorId(Long id){
+    /*public Optional editarPorId(Long id){
          return clienteRepository.findById(id);
+    }*/
+
+    public Optional<ClienteDTO> buscarPorID(Long id){
+        Optional<Cliente> clienteOptional = clienteRepository.findById(id);
+        return clienteOptional.map(ClienteDTO::new);
     }
 
     public List<ClienteDTO> buscarPorNome(String nome){
-        /*List<Cliente> clientes = clienteRepository.findAll();
-        return clientes.stream().filter(x -> x.getNome().toLowerCase().contains(nome.toLowerCase()))
-                .collect(Collectors.toList()).stream().map(z -> new ClienteDTO(z)).toList();*/
         return clienteRepository.findByNomeContainingIgnoreCase(nome);
     }
 

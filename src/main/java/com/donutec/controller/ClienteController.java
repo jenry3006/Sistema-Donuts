@@ -1,5 +1,6 @@
 package com.donutec.controller;
 
+import com.donutec.dto.ClienteDTO;
 import com.donutec.model.Cliente;
 import com.donutec.service.ClienteService;
 import jakarta.validation.Valid;
@@ -22,8 +23,9 @@ public class ClienteController {
     }
 
     @PostMapping("salvar")
-    public String salvar(@Valid Cliente cliente, Model model,@RequestParam(value = "redirectURL", required = false, defaultValue = "/clientes") String redirectURL){
-        clienteService.salvar(cliente);
+    public String salvar(@Valid @ModelAttribute ClienteDTO clienteDTO, Model model,
+                         @RequestParam(value = "redirectURL", required = false, defaultValue = "/clientes") String redirectURL){
+        clienteService.salvar(clienteDTO);
         return "redirect:" + redirectURL;
     }
 
@@ -35,7 +37,7 @@ public class ClienteController {
 
     @GetMapping("/editar")
     public String editar(@RequestParam("id")Long id, Model model){
-        clienteService.editarPorId(id).ifPresent(c -> model.addAttribute("cliente", c));
+        clienteService.buscarPorID(id).ifPresent(c -> model.addAttribute("cliente", c));
         return "cliente/clientes";
     }
 

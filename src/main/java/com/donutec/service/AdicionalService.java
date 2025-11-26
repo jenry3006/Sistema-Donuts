@@ -1,5 +1,6 @@
 package com.donutec.service;
 
+import com.donutec.dto.AdicionalDTO;
 import com.donutec.model.Adicional;
 import com.donutec.model.Cliente;
 import com.donutec.repository.AdicionalRepository;
@@ -15,20 +16,29 @@ public class AdicionalService {
     @Autowired
     AdicionalRepository repository;
 
-    public List<Adicional> listar(){
-        return repository.findAll();
+    public List<AdicionalDTO> listar(){
+        List<Adicional> result = repository.findAll();
+        return result.stream().map(x -> new AdicionalDTO(x)).toList();
     }
 
-    public Adicional salvar(Adicional adicional){
-        return repository.save(adicional);
+    public AdicionalDTO salvar(AdicionalDTO adicionalDTO){
+        Adicional adicional = new Adicional(adicionalDTO);
+        Adicional save = repository.save(adicional);
+        return new AdicionalDTO(save);
     }
 
-    public void deletar(Adicional adicional){
+    /*public void deletar(AdicionalDTO adicionalDTO){
+        Adicional adicional = new Adicional(adicionalDTO);
         repository.delete(adicional);
+    }*/
+
+    public void deletar(Long id){
+        repository.deleteById(id);
     }
 
-    public Optional editar(Long id){
-        return repository.findById(id);
+    public Optional<AdicionalDTO> buscarPorId(Long id){
+        Optional<Adicional> adicionalOptional = repository.findById(id);
+        return adicionalOptional.map(AdicionalDTO::new);
     }
 
 }

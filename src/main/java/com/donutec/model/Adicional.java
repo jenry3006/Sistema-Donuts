@@ -1,5 +1,6 @@
 package com.donutec.model;
 
+import com.donutec.dto.AdicionalDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,21 @@ public class Adicional {
     private String nome;
     @NotNull
     private BigDecimal valor;
+
+    public Adicional(AdicionalDTO adicionalDTO) {
+        this.id = adicionalDTO.getId();
+        this.nome = adicionalDTO.getNome();
+        this.valor = adicionalDTO.getValor();
+    }
+
+    public Adicional(){
+    }
+
+    public Adicional(Long id, String nome, BigDecimal valor) {
+        this.id = id;
+        this.nome = nome;
+        this.valor = valor;
+    }
 
     public Long getId() {
         return id;

@@ -1,14 +1,12 @@
 package com.donutec.controller;
 
+import com.donutec.dto.AdicionalDTO;
 import com.donutec.model.Adicional;
 import com.donutec.service.AdicionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/adicionais")
@@ -24,20 +22,26 @@ public class AdicionalController {
     }
 
     @PostMapping("salvar")
-    public String salvar(Adicional adicional){
-        adicionalService.salvar(adicional);
+    public String salvar(@ModelAttribute AdicionalDTO adicionalDTO){
+        adicionalService.salvar(adicionalDTO);
         return "redirect:/adicionais";
     }
 
-    @GetMapping("deletar")
-    public String deletar(Adicional adicional){
+   /* @GetMapping("deletar")
+    public String deletar(AdicionalDTO adicional){
         adicionalService.deletar(adicional);
+        return "redirect:/adicionais";
+    }*/
+
+    @GetMapping("deletar")
+    public String deletar(@RequestParam("id") Long id){ // Recebe o ID diretamente
+        adicionalService.deletar(id);
         return "redirect:/adicionais";
     }
 
     @GetMapping("editar")
     public String editar(@RequestParam ("id") Long id, Model model){
-        adicionalService.editar(id).ifPresent(a -> model.addAttribute("adicional", a));
+        adicionalService.buscarPorId(id).ifPresent(a -> model.addAttribute("adicional", a));
         return "adicional/adicionais";
     }
 

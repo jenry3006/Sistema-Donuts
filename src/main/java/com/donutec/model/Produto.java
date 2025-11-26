@@ -1,5 +1,6 @@
 package com.donutec.model;
 
+import com.donutec.dto.ProdutoDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +23,24 @@ public class Produto {
     @NotNull(message = "Defina um preço para o produto")
     private BigDecimal precoCusto;
     private String observacao;
+
+    public Produto(Long id, String nome, BigDecimal precoVenda, BigDecimal precoCusto, String observacao) {
+        this.id = id;
+        this.nome = nome;
+        this.precoVenda = precoVenda;
+        this.precoCusto = precoCusto;
+        this.observacao = observacao;
+    }
+
+    public Produto(){}
+
+    public Produto (ProdutoDTO produtoDTO){
+        this.id = produtoDTO.getId();
+        this.nome = produtoDTO.getNome();
+        this.precoVenda = produtoDTO.getPrecoVenda();
+        this.precoCusto = produtoDTO.getPrecoCusto();
+        this.observacao = produtoDTO.getObservacao();
+    }
 
     public Long getId() {
         return id;
@@ -61,5 +80,16 @@ public class Produto {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", precoVenda=" + precoVenda +
+                ", precoCusto=" + precoCusto +
+                ", observacao='" + observacao + '\'' +
+                '}';
     }
 }
