@@ -1,32 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <body>
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
-    <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}">
-            <i class="bi bi-shop me-2"></i>Donutec
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+
+<nav th:fragment="navbar" class="navbar navbar-expand-lg border-bottom p-0">
+    <div class="container">
+        <a class="navbar-brand" href="#">Donutec</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto gap-2">
+
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/}">Dashboard</a>
+                    <a class="nav-link active-custom" href="#">
+                        <i class="bi bi-grid-1x2"></i> Dashboard
+                    </a>
                 </li>
+
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Gerenciar
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown1" role="button" href="#"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-file-earmark-text"></i> Gerenciar
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                         <li><a class="dropdown-item" th:href="@{/clientes}">Clientes</a></li>
-                        <li><a class="dropdown-item" th:href="@{/produtos}">Produtos</a></li>
-                        <li><a class="dropdown-item" th:href="@{/adicionais}">Adicionais</a></li>
+                        <li><a class="dropdown-item" th:href="@{/clientes}">Produtos</a></li>
+                        <li><a class="dropdown-item" th:href="@{/clientes}">Adicionais</a></li>
                     </ul>
                 </li>
+
+
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/ponto-de-venda}">Registrar Venda</a>
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-cart3"></i> Registrar Pedido
+                    </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-clock"></i> Agendar Pedido
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-journal-check"></i> Histórico de Pedidos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-list-task"></i> Categorias
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>

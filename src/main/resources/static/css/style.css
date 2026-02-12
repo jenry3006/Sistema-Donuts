@@ -1,10 +1,3 @@
-/* Estilos globais */
-body {
-    background-color: #f8f9fa;
-}
-.navbar-brand i {
-    color: #ffc107; /* Cor do Donuts */
-}
 
 /* Estilos para a tabela */
 .table th, .table td {
@@ -48,3 +41,160 @@ body {
         #sugestoesCliente  li:hover, #sugestoesProduto li:hover{
             background-color: #f1f1f1;
         }
+
+/* Estilos globais */
+body {
+    background-color: #f8f9fa;
+        font-family: 'Inter', sans-serif;
+
+}
+
+.navbar {
+        background-color: #ffffff !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Sombra bem leve igual ao exemplo */
+            padding-right: 120px;
+
+    }
+
+  .navbar-brand {
+        font-weight: 700; /* Logo bem negrito */
+        letter-spacing: -0.5px; /* Letras levemente mais juntas no logo */
+        color: #1916f0 !important;
+        font-size: 1.5rem;
+    }
+
+
+/* Estilos para a tabela */
+.table th, .table td {
+    white-space: nowrap;
+}
+
+/* Estilos de cor para o dashboard, se desejar */
+.card-header-icon {
+    font-size: 2rem;
+    color: #fff;
+    opacity: 0.7;
+}
+
+#tabela{
+    padding: auto;
+    margin-top: 10px;
+}
+/* Seletor específico para as células da sua tabela */
+.table-sm td,
+.table-sm th {
+    padding-left: 70px !important;  /* Ajuste este valor para o que for melhor */
+    padding-right:70px !important; /* Ajuste este valor para o que for melhor */
+}
+/* Outros estilos, como hover effects e espaçamento */
+
+ .nav-link {
+        color: #64748b !important; /* Cinza azulado suave da imagem */
+        font-weight: 500; /* Peso médio para leitura clara */
+        font-size: 0.95rem;
+        padding-bottom: 20px !important;
+        padding-top: 20px !important;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Espaço entre ícone e texto */
+    }
+
+    /* Estilo para o item Ativo (Dashboard) */
+    .nav-link.active-custom {
+        color: #1916f0 !important;
+        border-bottom: 3px solid #1916f0;
+    }
+
+    .nav-link:hover {
+        color: #1916f0 !important;
+    }
+
+    /* Ícones um pouco menores e mais finos */
+    .bi {
+        font-size: 1.1rem;
+        stroke-width: 1.5;
+    }
+
+    .card-cadastro {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #475569;
+        /* Cinza médio para os rótulos */
+        font-size: 0.9rem;
+    }
+
+    .form-control {
+        border-color: #e2e8f0;
+        padding: 0.6rem 0.75rem;
+        border-radius: 8px;
+    }
+
+    /* Efeito de foco igual ao padrão do sistema */
+    .form-control:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    .btn-primary {
+        background-color: #1916f0;
+        border: none;
+        padding: 0.6rem 1.5rem;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+        background-color: #6366f1;
+        transform: translateY(-1px);
+    }
+
+    .section-title {
+        color: #1e293b;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Atualização para o novo azul */
+.text-primary, .navbar-brand, .nav-link.active-custom {
+    color: #1916f0 !important;
+}
+.nav-link.active-custom {
+    border-bottom-color: #1916f0;
+}
+.btn-primary {
+    background-color: #1916f0 !important;
+}
+
+/* Estilo da Tabela */
+.table-container {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.table thead th {
+    background-color: #1e293b; /* Cabeçalho escuro igual à foto */
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border: none;
+    padding: 12px 15px;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    color: #475569;
+    font-size: 0.85rem;
+    padding: 12px 15px;
+    border-color: #f1f5f9;
+}
