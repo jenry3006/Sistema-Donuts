@@ -1,2 +1,8 @@
-<p>Sistema de Controle de Vendas e Estoque de Ingredientes <p>
-Tecnologias usadas: Java, SpringBoot, Thymeleaf, Bootstrap, Postgresql.
+<p>Sistema de Controle de Vendas<p>
+<p>Tecnologias usadas:</p>
+<p>Linguagens de Programação: Java, Javascript</p>
+<p>Frameworks: Spring, Bootstrap</p>
+<p>Banco de Dados: PostgreSQL</p>
+<p>Outras tecnologias: Thymeleaf, Jquery</p>
+
+
