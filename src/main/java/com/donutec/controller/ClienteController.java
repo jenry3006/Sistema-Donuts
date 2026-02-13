@@ -22,11 +22,16 @@ public class ClienteController {
         return "cliente/clientes";
     }
 
+    @GetMapping ("/cadastro")
+    public String abrirCadastro(Cliente cliente, Model model){
+        model.addAttribute("cliente",cliente);
+        return "cliente/cadastro";
+    }
+
     @PostMapping("salvar")
-    public String salvar(@Valid @ModelAttribute ClienteDTO clienteDTO, Model model,
-                         @RequestParam(value = "redirectURL", required = false, defaultValue = "/clientes") String redirectURL){
+    public String salvar(@Valid @ModelAttribute ClienteDTO clienteDTO){
         clienteService.salvar(clienteDTO);
-        return "redirect:" + redirectURL;
+        return "redirect:/clientes";
     }
 
     @GetMapping("deletar")

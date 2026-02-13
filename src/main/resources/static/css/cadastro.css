@@ -1,0 +1,68 @@
+ body {
+        background-color: #f0f2f5;
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* Card principal */
+    .card-custom {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        /* Para o cabeçalho respeitar o arredondamento */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Cabeçalho igual à imagem 2 */
+    .card-header-custom {
+        background-color: #1916f0;
+        padding: 20px;
+        color: white;
+        position: relative;
+    }
+
+    .card-header-custom h2 {
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .card-header-custom p {
+        opacity: 0.8;
+        font-size: 0.9rem;
+    }
+
+    /* Estilo dos Inputs com Ícones */
+    .input-group-text {
+        background-color: transparent;
+        border-right: none;
+        color: #94a3b8;
+    }
+
+    .form-control {
+        border-left: none;
+        padding: 12px;
+    }
+
+    .form-control:focus {
+        border-color: #dee2e6;
+        box-shadow: none;
+    }
+
+    .input-group:focus-within .input-group-text,
+    .input-group:focus-within .form-control {
+        border-color: #1916f0;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 8px;
+    }
+
+    .btn-save {
+        background-color: #1916f0;
+        color: white;
+        font-weight: 600;
+        padding: 12px 30px;
+        border-radius: 8px;
+        border: none;
+    }
