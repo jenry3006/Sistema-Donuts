@@ -23,6 +23,12 @@ public class ProdutoController {
         return "produto/produtos";
     }
 
+    @GetMapping ("/cadastro")
+    public String abrirCadastro(Produto produto, Model model){
+        model.addAttribute("produto",produto);
+        return "produto/cadastro";
+    }
+
     @PostMapping("salvar")
     private String salvar(@Valid @ModelAttribute ProdutoDTO produtoDTO){
         produtoService.salvar(produtoDTO);

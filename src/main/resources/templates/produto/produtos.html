@@ -17,13 +17,13 @@
 <main class="container mt-4">
     <h1 class="mb-4">Gerenciar Produtos</h1>
 
-    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        <i class="bi bi-plus-circle me-1"></i> Adicionar Produto
-    </button>
+    <a th:href="@{/produtos/cadastro}" class="btn btn-primary" >
+        <i class="bi bi-plus-circle me-1"></i> Cadastrar novo produto
+    </a>
 
     <div class="table-responsive">
         <table id="tabela" class="table table-striped table-hover align-middle border border-black">
-            <thead class="table-dark">
+            <thead >
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>
@@ -35,7 +35,7 @@
             </thead>
             <tbody>
             <tr th:each="p : ${produtos}">
-                <th th:text="${p.id}" scope="row"></th>
+                <td th:text="${p.id}" scope="row"></td>
                 <td th:text="${p.nome}" class="cell"></td>
                 <td th:text="${p.precoVenda}" class="cell"></td>
                 <td th:text="${p.precoCusto}" class="cell"></td>
@@ -80,51 +80,6 @@
         </table>
     </div>
 </main>
-
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Adicionar/Editar Produtos</h5>
-                    <a th:href="@{/produtos}" class="btn-close" ></a>
-                </div>
-                <div class="modal-body">
-                    <form th:object="${produto}"  th:action="@{/produtos/salvar}"
-                          method="post" id="produto-form"
-                          class="needs-validation" novalidate>
-                        <div class="mb-3">
-                            <input type="hidden" th:field="*{id}" />
-                            <label for="nome" class="form-label">Nome</label>
-                            <input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Nome"
-                                   required>
-                            <div class="invalid-feedback">
-                                Por favor, insira o nome do produto.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Preço de Venda</label>
-                            <input type="number" th:field="*{precoVenda}" class="form-control" id="precoVenda"
-                                   placeholder="">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Valor de Custo</label>
-                            <input type="number" th:field="*{precoCusto}" class="form-control" id="precoCusto"
-                                   placeholder="">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Observação</label>
-                            <input type="text" class="form-control" th:field="*{observacao}"
-                                   id="observacao"></input>
-                        </div>
-                        <div class="modal-footer">
-                            <a type="button" th:href="@{/produtos}" class="btn btn-secondary" >Cancelar</a>
-                            <button type="submit" class="btn btn-primary">Salvar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
