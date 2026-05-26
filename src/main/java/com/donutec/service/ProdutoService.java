@@ -3,6 +3,7 @@ package com.donutec.service;
 import com.donutec.dto.ClienteDTO;
 import com.donutec.dto.ProdutoDTO;
 import com.donutec.model.Adicional;
+import com.donutec.model.Cliente;
 import com.donutec.model.Produto;
 import com.donutec.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,9 @@ public class ProdutoService {
         produtoRepository.delete(produto);
     }
 
-    public Optional<ProdutoDTO> buscarPorId(Long id){
+    public Optional<ProdutoDTO> buscarPorID(Long id){
         Optional<Produto> produtoOptional = produtoRepository.findById(id);
         return produtoOptional.map(ProdutoDTO::new);
-
     }
 
     public List<ProdutoDTO> buscarPorNome(String nome){

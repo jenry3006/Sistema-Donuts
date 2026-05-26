@@ -1,5 +1,6 @@
 package com.donutec.controller;
 
+import com.donutec.dto.ClienteDTO;
 import com.donutec.dto.ProdutoDTO;
 import com.donutec.model.Produto;
 import com.donutec.service.ProdutoService;
@@ -41,10 +42,15 @@ public class ProdutoController {
         return "redirect:/produtos";
     }
 
-    @GetMapping("editar")
-    private String editar(@RequestParam("id") Long id, Model model){
-        produtoService.buscarPorId(id).ifPresent(p -> model.addAttribute("produto", p));
-        return "produto/produtos";
+    @GetMapping("/editar")
+    public String abrirEdicao(@RequestParam("id") Long id, Model model) {
+
+        ProdutoDTO produtoDTO = produtoService.buscarPorID(id)
+                .orElseThrow(() -> new IllegalArgumentException("Produto inválido: " + id));
+
+        model.addAttribute("produto", produtoDTO);
+
+        return "produto/cadastro";
     }
 
 }

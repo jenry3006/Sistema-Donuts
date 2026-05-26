@@ -3,6 +3,7 @@ package com.donutec.dto;
 import com.donutec.model.Produto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.math.BigDecimal;
 
@@ -10,7 +11,9 @@ public class ProdutoDTO {
 
     private Long id;
     private String nome;
+    @NumberFormat(pattern = "#,##0.00")
     private BigDecimal precoVenda;
+    @NumberFormat(pattern = "#,##0.00")
     private BigDecimal precoCusto;
     private String observacao;
 
