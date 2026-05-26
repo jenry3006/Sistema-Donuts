@@ -1,6 +1,7 @@
 package com.donutec.dto;
 
 import com.donutec.model.Cliente;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -10,6 +11,7 @@ public class ClienteDTO {
     private String nome;
     private String endereco;
     private String telefone;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNascimento;
     private String observacao;
 

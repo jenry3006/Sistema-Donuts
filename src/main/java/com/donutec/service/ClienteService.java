@@ -33,10 +33,6 @@ public class ClienteService {
         clienteRepository.deleteById(id);
     }
 
-    /*public Optional editarPorId(Long id){
-         return clienteRepository.findById(id);
-    }*/
-
     public Optional<ClienteDTO> buscarPorID(Long id){
         Optional<Cliente> clienteOptional = clienteRepository.findById(id);
         return clienteOptional.map(ClienteDTO::new);

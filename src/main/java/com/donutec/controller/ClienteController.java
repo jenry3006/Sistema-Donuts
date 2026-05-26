@@ -41,9 +41,14 @@ public class ClienteController {
     }
 
     @GetMapping("/editar")
-    public String editar(@RequestParam("id")Long id, Model model){
-        clienteService.buscarPorID(id).ifPresent(c -> model.addAttribute("cliente", c));
-        return "cliente/clientes";
+    public String abrirEdicao(@RequestParam("id") Long id, Model model) {
+
+        ClienteDTO clienteDTO = clienteService.buscarPorID(id)
+                .orElseThrow(() -> new IllegalArgumentException("Cliente inválido: " + id));
+
+        model.addAttribute("cliente", clienteDTO);
+
+        return "cliente/cadastro";
     }
 
     @GetMapping("/teste")
