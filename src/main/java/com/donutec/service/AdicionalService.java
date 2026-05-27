@@ -2,7 +2,6 @@ package com.donutec.service;
 
 import com.donutec.dto.AdicionalDTO;
 import com.donutec.model.Adicional;
-import com.donutec.model.Cliente;
 import com.donutec.repository.AdicionalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,16 +26,11 @@ public class AdicionalService {
         return new AdicionalDTO(save);
     }
 
-    /*public void deletar(AdicionalDTO adicionalDTO){
-        Adicional adicional = new Adicional(adicionalDTO);
-        repository.delete(adicional);
-    }*/
-
     public void deletar(Long id){
         repository.deleteById(id);
     }
 
-    public Optional<AdicionalDTO> buscarPorId(Long id){
+    public Optional<AdicionalDTO> buscarPorID(Long id){
         Optional<Adicional> adicionalOptional = repository.findById(id);
         return adicionalOptional.map(AdicionalDTO::new);
     }

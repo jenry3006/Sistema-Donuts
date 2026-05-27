@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Donuts Shop - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cadastro.css}">
+</head>
+<body>
+
+<div th:insert="fragments/navbar :: navbar"></div>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card card-custom">
+                <div class="card-header-custom">
+                    <h2>
+                        <span th:text="${adicional.id == null} ? 'Novo ' : 'Editar '"></span>
+                        <span style="color: #ffcc00;">Adicional</span>
+                    </h2>
+                    <p th:text="${adicional.id == null} ? 'Cadastre seus adicionais com rapidez e segurança!' : 'Altere os dados do adicional selecionado com segurança!'"></p>
+                </div>
+
+                <div class="card-body p-5">
+                    <h5 class="mb-4 d-flex align-items-center gap-2">
+                        <i class="bi bi-person-lines-fill text-primary"></i> Dados Novo Adicional
+                    </h5>
+
+                    <form th:object="${adicional}" th:action="@{/adicionais/salvar}"
+                          method="post" id="adicional-form"
+                          class="needs-validation" novalidate>
+                        <input type="hidden" name="redirectURL" th:value="@{/cadastro}"/>
+                        <input type="hidden" th:field="*{id}"/>
+
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Nome</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                                    <input type="text" th:field="*{nome}" class="form-control" required placeholder="Ex: Recheio de Nutella">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Valor</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-cash"></i></span>
+                                    <input type="text" th:field="*{valor}" class="form-control" id="valor" placeholder="0,00">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-5 d-flex justify-content-between align-items-center border-top pt-4">
+                            <div class="gap-2">
+                                <a th:href="@{/adicionais}" class="btn btn-link text-muted text-decoration-none">Cancelar</a>
+                                <button type="submit" class="btn btn-save" th:text="${adicional.id == null} ? 'Salvar Adicional' : 'Atualizar Adicional'"></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>
